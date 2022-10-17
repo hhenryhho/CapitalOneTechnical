@@ -7,7 +7,7 @@ import ProtectedRoute from '../components/Auth/ProtectedRoute'
 import { theme } from '../theme/theme'
 import Fonts from '../util/activateFonts'
 
-const noAuthRequired = ['/signin', '/signup', '/404']
+const noAuthRequired = ['/signin', '/signup', '/404', '/500']
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter()

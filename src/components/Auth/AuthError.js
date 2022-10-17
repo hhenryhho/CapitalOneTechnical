@@ -8,9 +8,7 @@ const AuthError = () => {
   return (
     <Flex align="center">
       <RiErrorWarningFill />
-      <Text ml="5px" color="white">
-        {authError}
-      </Text>
+      <Text ml="5px">{authError}</Text>
     </Flex>
   )
 }
