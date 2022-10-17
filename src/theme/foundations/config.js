@@ -1,4 +1,4 @@
 export const config = {
   initialColorMode: 'light',
-  useSystemColorMode: true
+  useSystemColorMode: false
 }

@@ -13,7 +13,6 @@ import {
 } from '@chakra-ui/react'
 import { useContext } from 'react'
 import { UserContext } from '../../contexts/UserContext'
-import { WiMoonAltFirstQuarter } from 'react-icons/wi'
 import { FiChevronDown, FiLogOut } from 'react-icons/fi'
 import useAuth from '../../hooks/useAuth'
 

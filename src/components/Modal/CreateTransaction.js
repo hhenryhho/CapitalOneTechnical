@@ -13,7 +13,6 @@ import {
   FormErrorMessage,
   IconButton,
   Button,
-  useColorModeValue,
   Select
 } from '@chakra-ui/react'
 import { UserContext } from '../../contexts/UserContext'
