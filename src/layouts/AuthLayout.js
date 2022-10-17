@@ -10,9 +10,11 @@ const AuthLayout = ({ children }) => {
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="Pooler App" />
-        <meta name="author" content="Pooler" />
-        <title>Pooler</title>
+        <meta name="description" content="Credit Card Rewards Calculator" />
+        <meta name="author" content="Credit Card Rewards Calculator" />
+        <link rel="icon" href="small-logo.png" />
+        <meta name="author" content="Capital One" />
+        <title>C1 Rewards</title>
       </Head>
       <Flex h="100vh" w="100vw">
         {children}
