@@ -1,4 +1,10 @@
 import {
+  Button,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Input,
+  IconButton,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -6,18 +12,18 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  useDisclosure,
-  FormControl,
-  FormLabel,
-  Input,
-  FormErrorMessage,
-  IconButton,
-  Button,
-  Select
+  Select,
+  useDisclosure
 } from '@chakra-ui/react'
-import { UserContext } from '../../contexts/UserContext'
+
+// React hooks
 import { useContext, useState } from 'react'
+
+// Custom components
+import { UserContext } from '../../contexts/UserContext'
 import { FiPlus } from 'react-icons/fi'
+
+// Custom logic
 import { addTransaction } from '../../util/addTransaction'
 
 const CreateTransaction = () => {

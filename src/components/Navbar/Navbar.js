@@ -4,16 +4,21 @@ import {
   Avatar,
   Icon,
   Image,
-  IconButton,
   Button,
   Menu,
   MenuButton,
   MenuList,
   MenuItem
 } from '@chakra-ui/react'
+
+// React hooks
 import { useContext } from 'react'
+
+// Custom components
 import { UserContext } from '../../contexts/UserContext'
 import { FiChevronDown, FiLogOut } from 'react-icons/fi'
+
+// Custom logic
 import useAuth from '../../hooks/useAuth'
 
 const Navbar = () => {

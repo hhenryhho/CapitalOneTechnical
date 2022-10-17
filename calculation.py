@@ -1,6 +1,5 @@
 import math
 
-
 transactions = {
     "T01": {"date": "2021-05-01", "merchant_code": "sportcheck", "amount_cents": 21000},
     "T02": {"date": "2021-05-02", "merchant_code": "sportcheck", "amount_cents": 8700},

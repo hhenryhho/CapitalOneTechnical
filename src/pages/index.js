@@ -1,27 +1,35 @@
 import {
   Container,
-  Text,
   Flex,
   Grid,
   GridItem,
-  ScaleFade
+  ScaleFade,
+  Text
 } from '@chakra-ui/react'
 
-import UserLayout from '../layouts/UserLayout'
-import { calculateMaxPoints } from '../util/calculateMaxPoints'
-import { rules } from '../constants/rules'
-import CreateTransaction from '../components/Modal/CreateTransaction'
+// React hooks
 import { useEffect, useState } from 'react'
+
+// Custom components
+import UserLayout from '../layouts/UserLayout'
+import DeleteTransaction from '../components/Modal/DeleteTransaction'
+import CreateTransaction from '../components/Modal/CreateTransaction'
+
+// Firebase setup
 import { collection, onSnapshot, query, where } from 'firebase/firestore'
 import { auth, db } from '../firebase-config'
+
+// Custom logic
+import { calculateMaxPoints } from '../util/calculateMaxPoints'
 import { formatTransactions } from '../util/formatTransactions'
-import DeleteTransaction from '../components/Modal/DeleteTransaction'
+import { rules } from '../constants/rules'
 
 export default function Home() {
   const [transactions, setTransactions] = useState({})
   const [activeRules, setActiveRules] = useState([])
   const [maxPoints, setMaxPoints] = useState(0)
 
+  // Set up listener for new transactions, and sets up rules
   useEffect(() => {
     const uid = auth.currentUser.uid
     const transactionQuery = query(
@@ -29,6 +37,7 @@ export default function Home() {
       where('UID', '==', uid)
     )
 
+    // Set up rules
     setActiveRules(rules)
 
     const unsub = onSnapshot(transactionQuery, snapshot => {
@@ -39,9 +48,11 @@ export default function Home() {
       const newTransactions = formatTransactions(transactionsArray)
       setTransactions(newTransactions)
     })
+    // Unsubscribe from listener on unmount
     return () => unsub()
   }, [])
 
+  // Calculates max points whenever transactions change
   useEffect(() => {
     setMaxPoints(calculateMaxPoints(transactions, rules))
   }, [transactions])

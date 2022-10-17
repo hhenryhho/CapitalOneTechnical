@@ -1,5 +1,9 @@
 import { Button, Text } from '@chakra-ui/react'
+
+// React hooks
 import { useState } from 'react'
+
+// Custom logic
 import { deleteTransaction } from '../../util/deleteTransaction'
 
 const DeleteTransaction = id => {
