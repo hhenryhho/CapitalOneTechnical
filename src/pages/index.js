@@ -63,7 +63,7 @@ export default function Home() {
                 {maxPoints}
               </Text>
               <Text variant="title">
-                points from this month's transactions!
+                points from this month&apos;s transactions!
               </Text>
             </Flex>
           </Flex>
