@@ -63,6 +63,7 @@ const SignIn = () => {
           <FormControl isRequired>
             <FormLabel ms="4px">Email</FormLabel>
             <Input
+              id="email"
               borderRadius="15px"
               mb="24px"
               fontSize="sm"
@@ -74,6 +75,7 @@ const SignIn = () => {
             />
             <FormLabel ms="4px">Password</FormLabel>
             <Input
+              id="password"
               borderRadius="15px"
               mb="24px"
               fontSize="sm"

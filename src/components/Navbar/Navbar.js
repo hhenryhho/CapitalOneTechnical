@@ -3,6 +3,7 @@ import {
   Text,
   Avatar,
   Icon,
+  Image,
   IconButton,
   Button,
   Menu,
@@ -23,23 +24,20 @@ const Navbar = () => {
   const { signout } = useAuth()
 
   return (
-    <Flex h="100px" py="20px" px="20px" align="center" justifyContent="end">
-      <IconButton
-        onClick={toggleColorMode}
-        bg="transparent"
-        _active={{
-          bg: 'transparent'
-        }}
-        _hover={{
-          bg: 'transparent'
-        }}
-        icon={<WiMoonAltFirstQuarter />}>
-        Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
-      </IconButton>
-
-      <Menu>
-        <MenuButton
-          as={Button}
+    <Flex
+      h="100px"
+      px="20px"
+      backdropFilter="blur(8px)"
+      align="center"
+      justifyContent="space-between">
+      <Image
+        h="100px"
+        pl={[50, 100]}
+        src="large-logo.png"
+        alt="Capital One Logo"></Image>
+      <Flex align="center">
+        <IconButton
+          onClick={toggleColorMode}
           bg="transparent"
           _active={{
             bg: 'transparent'
@@ -47,27 +45,41 @@ const Navbar = () => {
           _hover={{
             bg: 'transparent'
           }}
-          rightIcon={<FiChevronDown />}>
-          {user ? (
-            <Avatar
-              name={user?.name}
-              src={user?.image}
-              size="sm"
-              border="10px"
-              borderColor="black"
-            />
-          ) : null}
-        </MenuButton>
+          icon={<WiMoonAltFirstQuarter />}>
+          Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
+        </IconButton>
 
-        <MenuList>
-          <MenuItem onClick={() => signout()} px="20px" py="10px">
-            <Flex align="center">
-              <Icon mr="4" as={FiLogOut} />
-              <Text>Signout</Text>
-            </Flex>
-          </MenuItem>
-        </MenuList>
-      </Menu>
+        <Menu>
+          <MenuButton
+            as={Button}
+            bg="transparent"
+            _active={{
+              bg: 'transparent'
+            }}
+            _hover={{
+              bg: 'transparent'
+            }}
+            rightIcon={<FiChevronDown />}>
+            {user ? (
+              <Avatar
+                name={user?.email || 'Guest'}
+                size="md"
+                border="10px"
+                borderColor="black"
+              />
+            ) : null}
+          </MenuButton>
+
+          <MenuList>
+            <MenuItem onClick={() => signout()} px="20px" py="10px">
+              <Flex align="center">
+                <Icon mr="4" as={FiLogOut} />
+                <Text>Signout</Text>
+              </Flex>
+            </MenuItem>
+          </MenuList>
+        </Menu>
+      </Flex>
     </Flex>
   )
 }
