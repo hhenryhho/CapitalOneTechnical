@@ -1,11 +1,11 @@
 export const textStyles = {
   components: {
     Text: {
-      baseStyle: { fontSize: 'sm' },
+      baseStyle: { fontSize: 'sm', fontWeight: '300', color: '#011728' },
       variants: {
         title: {
-          fontWeight: 'bold',
-          fontSize: '2xl'
+          fontWeight: '600',
+          fontSize: '1.25rem'
         },
         'sub-text': { fontSize: 'xs', color: 'gray.400' }
       }

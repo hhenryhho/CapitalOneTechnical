@@ -1,4 +1,11 @@
-import { Box, Container, Text, Flex, Grid, GridItem } from '@chakra-ui/react'
+import {
+  Container,
+  Text,
+  Flex,
+  Grid,
+  GridItem,
+  ScaleFade
+} from '@chakra-ui/react'
 
 import UserLayout from '../layouts/UserLayout'
 import { calculateMaxPoints } from '../util/calculateMaxPoints'
@@ -40,7 +47,7 @@ export default function Home() {
   }, [transactions])
 
   return (
-    <Container maxWidth="container.xl" pt="60px">
+    <Container maxWidth="container.xl" pt="50px">
       <Grid
         templateColumns={{ md: '1fr', lg: '1.8fr 1fr' }}
         templateRows={{ md: '1fr auto', lg: '1fr' }}
@@ -52,17 +59,23 @@ export default function Home() {
             id="summary"
             justify="center"
             p="30px"
-            border="1px"
-            borderRadius="15px"
+            bg="white"
+            boxShadow="0 8px 6px -7px hsl(0deg 0% 54% / 50%)"
             mb="50px">
             <Flex
               align="center"
               flexDir={['column', 'column', 'column', 'row']}>
-              <Text variant="title">You can redeem </Text>
-              <Text variant="title" color="blue" px="5px">
+              <Text variant="title" textAlign="center">
+                You can redeem{' '}
+              </Text>
+              <Text
+                variant="title"
+                textAlign="center"
+                color="brand.blueHighlight"
+                px="5px">
                 {maxPoints}
               </Text>
-              <Text variant="title">
+              <Text variant="title" textAlign="center">
                 points from this month&apos;s transactions!
               </Text>
             </Flex>
@@ -75,61 +88,75 @@ export default function Home() {
           <Flex id="transactions" h="540px" w="inherit">
             <Flex flexDir="column" overflowY="auto" w="inherit">
               {Object.values(transactions).map((transaction, index) => (
-                <Flex
-                  key={index}
-                  borderRadius="15px"
-                  p="15px"
-                  border="1px"
-                  mb="15px">
-                  <Grid templateColumns="repeat(4, 1fr)" w="100%" gap={5}>
-                    <GridItem colSpan={1}>
-                      <Flex flexDir="column">
-                        <Text>Date: {transaction.date}</Text>
-                        <Text>Amount: ${transaction.amount_cents / 100}</Text>
-                        <Text>Merchant: {transaction.merchant_code}</Text>
-                      </Flex>
-                    </GridItem>
-                    <GridItem colSpan={2}>
-                      <Flex h="100%" align="center" justify="center">
-                        <Text>
-                          Points for this transaction:{' '}
-                          {calculateMaxPoints([transaction], rules)}
-                        </Text>
-                      </Flex>
-                    </GridItem>
-                    <GridItem colSpan={1}>
-                      <Flex h="100%" align="center" justify="end">
-                        <DeleteTransaction id={transaction.id} />
-                      </Flex>
-                    </GridItem>
-                  </Grid>
-                </Flex>
+                <ScaleFade key={index} initialScale={0.9} in="true">
+                  <Flex
+                    bg="white"
+                    boxShadow="0 8px 6px -7px hsl(0deg 0% 54% / 50%)"
+                    p="15px"
+                    mb="15px">
+                    <Grid templateColumns="repeat(4, 1fr)" w="100%" gap={5}>
+                      <GridItem colSpan={1}>
+                        <Flex flexDir="column">
+                          <Text>Date: {transaction.date}</Text>
+                          <Text>Amount: ${transaction.amount_cents / 100}</Text>
+                          <Text>Merchant: {transaction.merchant_code}</Text>
+                        </Flex>
+                      </GridItem>
+                      <GridItem colSpan={2}>
+                        <Flex h="100%" align="center" justify="center">
+                          <Text>
+                            Points for this transaction:{' '}
+                            {calculateMaxPoints([transaction], rules)}
+                          </Text>
+                        </Flex>
+                      </GridItem>
+                      <GridItem colSpan={1}>
+                        <Flex h="100%" align="center" justify="end">
+                          <DeleteTransaction id={transaction.id} />
+                        </Flex>
+                      </GridItem>
+                    </Grid>
+                  </Flex>
+                </ScaleFade>
               ))}
             </Flex>
           </Flex>
         </Flex>
         {/* Right Column */}
-        <Flex flexDir="column" h="800px" border="1px">
-          <Text alignSelf="center" variant="title" p="10px">
+        <Flex flexDir="column" h="800px">
+          <Text
+            w="100%"
+            alignSelf="center"
+            align="center"
+            variant="title"
+            p="10px">
             Active Rules
           </Text>
           <Flex flexDir="column" overflowY="auto">
             {activeRules.map((rule, index) => (
-              <Flex key={index} flexDir="column" p="10px" order="1px">
-                <Text variant="title">Rule {index + 1}</Text>
-                <Text>{rule.pointsAwarded} points for every: </Text>
-                <Flex flexDir={['column', 'column', 'column', 'row']} pl="10px">
-                  <Text variant="sub-text">
-                    ${rule.minSpend.sportcheck} spend at Sport Check
-                  </Text>
-                  <Text variant="sub-text">
-                    ${rule.minSpend.tim_hortons} spend at Tim Hortons
-                  </Text>
-                  <Text variant="sub-text">
-                    ${rule.minSpend.subway} spend at Subway
-                  </Text>
+              <ScaleFade key={index} initialScale={0.9} in="true">
+                <Flex
+                  flexDir="column"
+                  mb="15px"
+                  p="10px"
+                  boxShadow="0 8px 6px -7px hsl(0deg 0% 54% / 50%)"
+                  bg="white"
+                  order="1px">
+                  <Text variant="title">Rule {index + 1}</Text>
+                  <Text>{rule.pointsAwarded} points for every: </Text>
+                  <Flex
+                    flexDir={['column', 'column', 'column', 'row']}
+                    pl="10px">
+                    <Text>
+                      ${rule.minSpend.sportcheck} spend at Sport Check
+                    </Text>
+                    <Text>
+                      ${rule.minSpend.tim_hortons} spend at Tim Hortons
+                    </Text>
+                    <Text>${rule.minSpend.subway} spend at Subway</Text>
+                  </Flex>
                 </Flex>
-              </Flex>
+              </ScaleFade>
             ))}
           </Flex>
         </Flex>

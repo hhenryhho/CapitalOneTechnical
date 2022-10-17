@@ -55,15 +55,9 @@ const CreateTransaction = () => {
       <IconButton
         onClick={onOpen}
         m="10px"
-        isRound="true"
-        _active={{
-          bg: useColorModeValue('#3B3DCC', '#2c2c30'),
-          color: 'white'
-        }}
-        _hover={{
-          bg: useColorModeValue('#3B3DCC', '#2c2c30'),
-          color: 'white'
-        }}
+        bg="#128029"
+        color="white"
+        _hover={{ bg: '#0E6621' }}
         icon={<FiPlus />}
       />
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
@@ -71,7 +65,7 @@ const CreateTransaction = () => {
         <ModalContent>
           <ModalCloseButton />
           <ModalHeader>Enter a transaction</ModalHeader>
-          <ModalBody pb={6}>
+          <ModalBody>
             <FormControl isInvalid={errorMessage} isRequired>
               <FormLabel>Date</FormLabel>
               <Input
@@ -120,7 +114,9 @@ const CreateTransaction = () => {
           <ModalFooter>
             <Button
               isDisabled={!date || !merchant || !amount}
-              colorScheme="blue"
+              bg="#128029"
+              color="white"
+              _hover={{ bg: '#0E6621' }}
               mr={3}
               isLoading={isLoading}
               onClick={onSubmitCreateTransaction}>

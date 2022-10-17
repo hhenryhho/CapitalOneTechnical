@@ -1,4 +1,4 @@
-import { Button } from '@chakra-ui/react'
+import { Button, Text } from '@chakra-ui/react'
 import { useState } from 'react'
 import { deleteTransaction } from '../../util/deleteTransaction'
 
@@ -20,11 +20,14 @@ const DeleteTransaction = id => {
   return (
     <>
       <Button
-        colorScheme="blue"
+        bg="#128029"
+        _hover={{ bg: '#0E6621' }}
         mr={3}
         isLoading={isLoading}
         onClick={onSubmitDeleteTransaction}>
-        Delete
+        <Text color="white" fontSize="1.25rem">
+          Delete
+        </Text>
       </Button>
     </>
   )

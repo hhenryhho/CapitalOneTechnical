@@ -9,8 +9,7 @@ import {
   Menu,
   MenuButton,
   MenuList,
-  MenuItem,
-  useColorMode
+  MenuItem
 } from '@chakra-ui/react'
 import { useContext } from 'react'
 import { UserContext } from '../../contexts/UserContext'
@@ -19,36 +18,24 @@ import { FiChevronDown, FiLogOut } from 'react-icons/fi'
 import useAuth from '../../hooks/useAuth'
 
 const Navbar = () => {
-  const { colorMode, toggleColorMode } = useColorMode()
   const { user } = useContext(UserContext)
   const { signout } = useAuth()
 
   return (
     <Flex
-      h="100px"
+      minHeight="68px"
       px="20px"
+      bg="white"
       backdropFilter="blur(8px)"
       align="center"
+      boxShadow="0 8px 6px -7px hsl(0deg 0% 54% / 50%)"
       justifyContent="space-between">
       <Image
-        h="100px"
+        h="48px"
         pl={[50, 100]}
-        src="large-logo.png"
+        src="logo.svg"
         alt="Capital One Logo"></Image>
       <Flex align="center">
-        <IconButton
-          onClick={toggleColorMode}
-          bg="transparent"
-          _active={{
-            bg: 'transparent'
-          }}
-          _hover={{
-            bg: 'transparent'
-          }}
-          icon={<WiMoonAltFirstQuarter />}>
-          Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
-        </IconButton>
-
         <Menu>
           <MenuButton
             as={Button}

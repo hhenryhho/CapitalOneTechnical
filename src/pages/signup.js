@@ -50,7 +50,8 @@ const SignUp = () => {
   return (
     <Flex align="center" justify="center" w="100%">
       <Flex
-        border="1px"
+        border="1px solid #c9ced2"
+        boxShadow="0 1px 2px 0 rgb(0 0 0 / 8%), 0 3px 3px 0 rgb(0 0 0 / 5%)"
         direction="column"
         w="500px"
         p="48px"
@@ -86,8 +87,14 @@ const SignUp = () => {
               onChange={e => setSignUpPassword(e.target.value)}
             />
             {authError && <AuthError />}
-            <Button fontSize="10px" type="submit" w="100%" mb="20px" mt="20px">
-              <Text>SIGN UP</Text>
+            <Button
+              type="submit"
+              w="100%"
+              mb="20px"
+              mt="20px"
+              bg="#128029"
+              _hover={{ bg: '#0E6621' }}>
+              <Text color="white">SIGN UP</Text>
             </Button>
           </FormControl>
         </form>
@@ -95,7 +102,7 @@ const SignUp = () => {
           <Text fontWeight="medium">
             Already signed up?
             <NextLink href="/signin" passHref>
-              <Link color="brand.purpleText" ms="5px" fontWeight="bold">
+              <Link color="brand.blueHighlight" ms="5px" fontWeight="bold">
                 Sign In
               </Link>
             </NextLink>
@@ -104,7 +111,7 @@ const SignUp = () => {
           <Text fontWeight="medium">
             Continue as{' '}
             <Link
-              color="brand.purpleText"
+              color="brand.blueHighlight"
               fontWeight="bold"
               onClick={() => handleSignIn('guest')}>
               guest
