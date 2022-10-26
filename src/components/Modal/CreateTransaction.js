@@ -17,7 +17,7 @@ import {
 } from '@chakra-ui/react'
 
 // React hooks
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
 // Custom components
 import { UserContext } from '../../contexts/UserContext'
@@ -41,6 +41,14 @@ const CreateTransaction = () => {
   const [amount, setAmount] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
   const [isLoading, setLoading] = useState(false)
+
+  useEffect(() => {
+    if (amount > 1000) {
+      setErrorMessage('Please choose an amount under 1000')
+    } else {
+      setErrorMessage('')
+    }
+  }, [amount])
 
   const onSubmitCreateTransaction = () => {
     setLoading(true)
@@ -105,12 +113,12 @@ const CreateTransaction = () => {
                 fontSize="sm"
                 type="number"
                 min="0.01"
-                max="10000"
+                max="1000"
                 step="0.01"
                 size="lg"
                 value={amount}
                 placeholder="Amount in dollars (Ex: 10.24)"
-                onChange={e => setAmount(e.target.value)}
+                onChange={e => setAmount(parseFloat(e.target.value))}
               />
               <FormErrorMessage>{errorMessage}</FormErrorMessage>
             </FormControl>
@@ -118,7 +126,7 @@ const CreateTransaction = () => {
 
           <ModalFooter>
             <Button
-              isDisabled={!date || !merchant || !amount}
+              isDisabled={!date || !merchant || !amount || amount > 1000}
               bg="#128029"
               color="white"
               _hover={{ bg: '#0E6621' }}
